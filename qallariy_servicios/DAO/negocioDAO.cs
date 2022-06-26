@@ -10,6 +10,7 @@ namespace qallariy_servicios.DAO
 {
     public class negocioDAO
     {
+        varBinaryUtils bu = new varBinaryUtils();
         public IEnumerable<Negocio> Listado()
         {
             List<Negocio> auxiliar = new List<Negocio>();
@@ -32,7 +33,7 @@ namespace qallariy_servicios.DAO
 
                         //reg.Comentario = (dr.IsDBNull(5) ? "" : dr.GetString(5));
                         //imagen = dr.IsDBNull(5) ? "" : (byte[])dr[5],
-                        imagen = (byte[])dr[5],
+                        imagen = bu.verificarVarBinary(dr,5),
                         facebook = dr.GetString(6),
                         instagram = dr.GetString(7),
                         tiktok = dr.GetString(8),
@@ -123,12 +124,13 @@ namespace qallariy_servicios.DAO
                 {
                     auxiliar.Add(new NegocioListado()
                     {
+
                         idNegocio = dr.GetString(0),
                         nombreNegocio = dr.GetString(1),
                         descripcionNegocio = dr.GetString(2),
                         direccion = dr.GetString(3),
                         telefono = dr.GetString(4),
-                        imagen = (byte[])dr[5],
+                        imagen = bu.verificarVarBinary(dr, 5),
                         facebook = dr.IsDBNull(6) ? "" : dr.GetString(6),
                         instagram = dr.IsDBNull(7) ? "" : dr.GetString(7),
                         tiktok = dr.IsDBNull(8) ? "" : dr.GetString(8),

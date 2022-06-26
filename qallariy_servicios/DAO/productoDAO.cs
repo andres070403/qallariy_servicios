@@ -10,6 +10,7 @@ namespace qallariy_servicios.DAO
 {
     public class productoDAO
     {
+        varBinaryUtils vbu = new varBinaryUtils();
         public IEnumerable<Producto> Listado()
         {
            string vacio = "";
@@ -23,7 +24,7 @@ namespace qallariy_servicios.DAO
           
                     while (dr.Read())
                     {
-                        auxiliar.Add(new Producto()
+                    auxiliar.Add(new Producto()
                         {
                             idProducto = dr.GetString(0),
                             idnegocio = dr.GetString(1),
@@ -35,9 +36,9 @@ namespace qallariy_servicios.DAO
                             fecha_creacion = dr.GetDateTime(7),
                             fecha_modificacion = dr.GetDateTime(8),
                             idestado = dr.GetInt32(9),
-                            imagen1 = (byte[])dr[10],
-                            imagen2 = (byte[])dr[11],
-                            imagen3 = (byte[])dr[12],
+                            imagen1 = vbu.verificarVarBinary(dr,10),
+                            imagen2 = vbu.verificarVarBinary(dr, 11),
+                            imagen3 = vbu.verificarVarBinary(dr, 12),
                         });
                     }
                 
@@ -125,10 +126,10 @@ namespace qallariy_servicios.DAO
                         stock = dr.GetInt32(4),
                         visitas = dr.GetInt32(5),
                         meInteresa = dr.GetInt32(6),
-                        imagen1 = (byte[])dr[7],
-                        imagen2 = (byte[])dr[8],
-                        imagen3 = (byte[])dr[9],
-                    idestado = dr.GetInt32(10),
+                        imagen1 = vbu.verificarVarBinary(dr, 7),
+                        imagen2 = vbu.verificarVarBinary(dr, 8),
+                        imagen3 = vbu.verificarVarBinary(dr, 9),
+                        idestado = dr.GetInt32(10),
                         estado = dr.GetString(11)
                     });
                 }

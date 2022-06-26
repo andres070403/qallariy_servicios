@@ -15,7 +15,7 @@ namespace qallariy_servicios.Models
         public int distrito { get; set; }
         public string direccion { get; set; }
         public string telefono { get; set; }
-        public string imagen { get; set; }
+        public byte[] imagen { get; set; }
         public string facebook { get; set; }
         public string instagram { get; set; }
         public string tiktok { get; set; }
@@ -33,5 +33,32 @@ namespace qallariy_servicios.Models
         public string desc_categoria { get; set; }
         public string direccion { get; set; }
         public byte[] imagen { get; set; } 
+    }
+
+    public class NegocioListado
+    {
+        public string idNegocio { get; set; }
+        public string nombreNegocio { get; set; }
+        public string descripcionNegocio { get; set; }
+        public int vendedor { get; set; }
+        public string categoria { get; set; }
+        public int distrito { get; set; }
+        public string direccion { get; set; }
+        public string telefono { get; set; }
+        public byte[] imagen { get; set; }
+        public string facebook { get; set; }
+        public string instagram { get; set; }
+        public string tiktok { get; set; }
+        public string correo { get; set; }
+        public string whatsapp { get; set; }
+        public string website { get; set; }
+        public string nombrevendedor { get; set; }
+        public string apellidovendedor { get; set; }
+        public string descripcionvendedor { get; set; }
+        public int numerodocvendedor { get; set; }
+        public string descdistrito { get; set; }
+        public string descprov { get; set; }
+        public int iddepart { get; set; }
+        public string descdepart { get; set; }
     }
 }

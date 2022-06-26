@@ -28,15 +28,19 @@ namespace qallariy_servicios.DAO
                         descripcionNegocio = dr.GetString(2),
                         direccion = dr.GetString(3),
                         telefono = dr.GetString(4),
-                        imagen = dr.GetString(5),
+                        //imagen = dr.GetByte(5),
+
+                        //reg.Comentario = (dr.IsDBNull(5) ? "" : dr.GetString(5));
+                        //imagen = dr.IsDBNull(5) ? "" : (byte[])dr[5],
+                        imagen = (byte[])dr[5],
                         facebook = dr.GetString(6),
                         instagram = dr.GetString(7),
                         tiktok = dr.GetString(8),
                         correo = dr.GetString(9),
                         whatsapp = dr.GetString(10),
                         website = dr.GetString(11),
-                        categoria = dr.GetString(12),
-                    });
+                        categoria = dr.GetString(12)
+                    }) ;
                 }
             }
             return auxiliar;
@@ -105,32 +109,41 @@ namespace qallariy_servicios.DAO
             }
             return mensaje;
         }
-        public IEnumerable<Negocio> ListadoNegocioxid(int id)
+        public IEnumerable<NegocioListado> ListadoNegocioxid(string id)
         {
-            List<Negocio> auxiliar = new List<Negocio>();
+            List<NegocioListado> auxiliar = new List<NegocioListado>();
             using (SqlConnection cn = new conexionDAO().getcn)
             {
-                SqlCommand cmd = new SqlCommand("usp_listar_negocio", cn);
+                SqlCommand cmd = new SqlCommand("usp_listar_negocio_id", cn);
+                cmd.Parameters.AddWithValue("@idNeg", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    auxiliar.Add(new Negocio()
+                    auxiliar.Add(new NegocioListado()
                     {
                         idNegocio = dr.GetString(0),
                         nombreNegocio = dr.GetString(1),
                         descripcionNegocio = dr.GetString(2),
                         direccion = dr.GetString(3),
                         telefono = dr.GetString(4),
-                        imagen = dr.GetString(5),
-                        facebook = dr.GetString(6),
-                        instagram = dr.GetString(7),
-                        tiktok = dr.GetString(8),
-                        correo = dr.GetString(9),
-                        whatsapp = dr.GetString(10),
-                        website = dr.GetString(11),
-                        categoria = dr.GetString(12),
+                        imagen = (byte[])dr[5],
+                        facebook = dr.IsDBNull(6) ? "" : dr.GetString(6),
+                        instagram = dr.IsDBNull(7) ? "" : dr.GetString(7),
+                        tiktok = dr.IsDBNull(8) ? "" : dr.GetString(8),
+                        correo = dr.IsDBNull(9) ? "" : dr.GetString(9),
+                        whatsapp = dr.IsDBNull(10) ? "" : dr.GetString(10),
+                        website = dr.IsDBNull(11) ? "" : dr.GetString(11),
+                        nombrevendedor = dr.GetString(12),
+                        apellidovendedor = dr.GetString(13),
+                        descripcionvendedor = dr.GetString(14),
+                        numerodocvendedor = dr.GetInt32(15),
+                        categoria = dr.GetString(16),
+                        descdistrito = dr.GetString(17),
+                        descprov = dr.GetString(18),
+                        iddepart = dr.GetInt32(19),
+                        descdepart = dr.GetString(20),
                     });
                 }
             }

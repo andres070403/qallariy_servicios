@@ -30,7 +30,7 @@ namespace qallariy_servicios.Controllers
             return Ok(await Task.Run(() => new productoDAO().Actualizar(producto)));
         }
         [HttpGet("listaproductoxid")]
-        public async Task<IActionResult> GetProductosxid(int id)
+        public async Task<IActionResult> GetProductosxid(string id)
         {
             return Ok(await Task.Run(() => new productoDAO().Listadoprodxid(id)));
         }

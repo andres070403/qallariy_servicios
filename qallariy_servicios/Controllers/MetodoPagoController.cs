@@ -19,7 +19,6 @@ namespace qallariy_servicios.Controllers
         {
             return Ok(await Task.Run(() => new metodoPagoDAO().listado()));
         }
-        //yo hice todo
         [HttpPost("agregarmetodopago")] 
         public async Task<ActionResult> PostMetodoPago(MetodoPago metodoPago)
         {

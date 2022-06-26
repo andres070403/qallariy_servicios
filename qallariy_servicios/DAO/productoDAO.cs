@@ -12,6 +12,7 @@ namespace qallariy_servicios.DAO
     {
         public IEnumerable<Producto> Listado()
         {
+           string vacio = "";
             List<Producto> auxiliar = new List<Producto>();
             using (SqlConnection cn = new conexionDAO().getcn)
             {
@@ -19,25 +20,27 @@ namespace qallariy_servicios.DAO
                 cmd.CommandType = CommandType.StoredProcedure;
                 cn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    auxiliar.Add(new Producto()
+          
+                    while (dr.Read())
                     {
-                        idProducto = dr.GetString(0),
-                        idnegocio = dr.GetInt32(1),
-                        descripcion = dr.GetString(2),
-                        precio = dr.GetDouble(3),
-                        stock = dr.GetInt32(4),
-                        visitas = dr.GetInt32(5),
-                        meInteresa = dr.GetInt32(6),
-                        fecha_creacion = dr.GetString(7),
-                        fecha_modificacion = dr.GetString(8),
-                        idestado = dr.GetInt32(9),
-                        imagen1 = dr.GetString(10),
-                        imagen2 = dr.GetString(11),
-                        imagen3 = dr.GetString(12)
-                    });
-                }
+                        auxiliar.Add(new Producto()
+                        {
+                            idProducto = dr.GetString(0),
+                            idnegocio = dr.GetString(1),
+                            descripcion = dr.GetString(2),
+                            precio = dr.GetDecimal(3),
+                            stock = dr.GetInt32(4),
+                            visitas = dr.GetInt32(5),
+                            meInteresa = dr.GetInt32(6),
+                            fecha_creacion = dr.GetDateTime(7),
+                            fecha_modificacion = dr.GetDateTime(8),
+                            idestado = dr.GetInt32(9),
+                            imagen1 = (byte[])dr[10],
+                            imagen2 = (byte[])dr[11],
+                            imagen3 = (byte[])dr[12],
+                        });
+                    }
+                
             }
             return auxiliar;
         }
@@ -101,7 +104,7 @@ namespace qallariy_servicios.DAO
             return mensaje;
         }
 
-        public IEnumerable<Producto> Listadoprodxid(int id)
+        public IEnumerable<Producto> Listadoprodxid(string id)
         {
             List<Producto> auxiliar = new List<Producto>();
             using (SqlConnection cn = new conexionDAO().getcn)
@@ -116,16 +119,16 @@ namespace qallariy_servicios.DAO
                     auxiliar.Add(new Producto()
                     {
                         idProducto = dr.GetString(0),
-                        idnegocio = dr.GetInt32(1),
+                        idnegocio = dr.GetString(1),
                         descripcion = dr.GetString(2),
-                        precio = dr.GetDouble(3),
+                        precio = dr.GetDecimal(3),
                         stock = dr.GetInt32(4),
                         visitas = dr.GetInt32(5),
                         meInteresa = dr.GetInt32(6),
-                        imagen1 = dr.GetString(7),
-                        imagen2 = dr.GetString(8),
-                        imagen3 = dr.GetString(9),
-                        idestado = dr.GetInt32(10),
+                        imagen1 = (byte[])dr[7],
+                        imagen2 = (byte[])dr[8],
+                        imagen3 = (byte[])dr[9],
+                    idestado = dr.GetInt32(10),
                         estado = dr.GetString(11)
                     });
                 }

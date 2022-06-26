@@ -10,6 +10,7 @@ namespace qallariy_servicios.DAO
 {
     public class vendedorDAO
     {
+        Utils u = new Utils();
         public IEnumerable<Vendedor> Listado()
         {
             List<Vendedor> auxiliar = new List<Vendedor>();
@@ -31,7 +32,7 @@ namespace qallariy_servicios.DAO
                         idTipDoc = dr.GetInt32(5),
                         descTipDoc = dr.GetString(6),
                         numeroDocumento = dr.GetInt32(7),
-                        fechaNacimiento = dr.GetString(8),
+                        fechaNacimiento = u.parseDateTimeSafe(dr,8),
                         telefono = dr.GetString(9)
                     });
                 }

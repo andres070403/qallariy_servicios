@@ -10,7 +10,7 @@ namespace qallariy_servicios.DAO
 {
     public class negocioDAO
     {
-        varBinaryUtils bu = new varBinaryUtils();
+        Utils bu = new Utils();
         public IEnumerable<Negocio> Listado()
         {
             List<Negocio> auxiliar = new List<Negocio>();

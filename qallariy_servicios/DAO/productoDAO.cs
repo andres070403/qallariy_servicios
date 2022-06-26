@@ -10,7 +10,7 @@ namespace qallariy_servicios.DAO
 {
     public class productoDAO
     {
-        varBinaryUtils vbu = new varBinaryUtils();
+        Utils vbu = new Utils();
         public IEnumerable<Producto> Listado()
         {
            string vacio = "";

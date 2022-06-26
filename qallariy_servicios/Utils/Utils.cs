@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace qallariy_servicios.Models
 {
-    public class varBinaryUtils
+    public class Utils
     {
         public byte[] verificarVarBinary(SqlDataReader dr, int fila)
         {
@@ -16,5 +16,17 @@ namespace qallariy_servicios.Models
 
             return data;
         }
+
+        public String parseDateTimeSafe(SqlDataReader dr, int fila)        
+        {
+            String date = "";
+
+            if (!dr.GetSqlDateTime(fila).IsNull)
+                date = dr.GetDateTime(8).ToString("dd/MM/yyyy");
+
+            return date;
+        }
     }
+
+    
 }

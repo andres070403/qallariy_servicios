@@ -24,5 +24,6 @@ namespace qallariy_servicios.Controllers
         {
             return Ok(await Task.Run(() => new vendedorDAO().Actualizar(vendedor)));
         }
+  
     }
 }

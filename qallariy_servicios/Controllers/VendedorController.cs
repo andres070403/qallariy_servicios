@@ -24,5 +24,11 @@ namespace qallariy_servicios.Controllers
         {
             return Ok(await Task.Run(() => new vendedorDAO().Actualizar(vendedor)));
         }
+        [HttpGet("buscar")]
+        public async Task<IActionResult> GetBuscar(string correo)
+        {
+            return Ok(await Task.Run(() => new vendedorDAO().Buscar(correo)));
+        }
+
     }
 }

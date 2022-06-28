@@ -95,5 +95,10 @@ namespace qallariy_servicios.DAO
             }
             return mensaje;
         }
+
+        public Vendedor Buscar(string correo)
+        {
+            return Listado().FirstOrDefault(p => p.correo.Equals(correo));
+        }
     }
 }

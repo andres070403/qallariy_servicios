@@ -110,9 +110,9 @@ namespace qallariy_servicios.DAO
             }
             return mensaje;
         }
-        public IEnumerable<NegocioListado> ListadoNegocioxid(string id)
+        public NegocioListado ListadoNegocioxid(string id)
         {
-            List<NegocioListado> auxiliar = new List<NegocioListado>();
+            NegocioListado auxiliar = new NegocioListado();
             using (SqlConnection cn = new conexionDAO().getcn)
             {
                 SqlCommand cmd = new SqlCommand("usp_listar_negocio_id", cn);
@@ -122,7 +122,7 @@ namespace qallariy_servicios.DAO
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    auxiliar.Add(new NegocioListado()
+                    auxiliar = new NegocioListado()
                     {
 
                         idNegocio = dr.GetString(0),
@@ -146,7 +146,7 @@ namespace qallariy_servicios.DAO
                         descprov = dr.GetString(18),
                         iddepart = dr.GetInt32(19),
                         descdepart = dr.GetString(20),
-                    });
+                    };
                 }
             }
             return auxiliar;

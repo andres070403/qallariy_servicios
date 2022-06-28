@@ -34,5 +34,6 @@ namespace qallariy_servicios.Controllers
         {
             return Ok(await Task.Run(() => new negocioDAO().ListadoNegocioxid(id)));
         }
+
     }
 }

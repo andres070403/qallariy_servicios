@@ -136,5 +136,34 @@ namespace qallariy_servicios.DAO
             }
             return auxiliar;
         }
+        public IEnumerable<Producto> Listadoprodxidnegocio(string id)
+        {
+            List<Producto> auxiliar = new List<Producto>();
+            using (SqlConnection cn = new conexionDAO().getcn)
+            {
+                SqlCommand cmd = new SqlCommand("usp_listar_productos_negocio", cn);
+                cmd.Parameters.AddWithValue("@idNeg", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    auxiliar.Add(new Producto()
+                    {
+                        idProducto = dr.GetString(0),
+                        descripcion = dr.GetString(1),
+                        precio = dr.GetDecimal(2),
+                        stock = dr.GetInt32(3),
+                        meInteresa = dr.GetInt32(4),
+                        imagen1 = vbu.verificarVarBinary(dr, 5),
+                        imagen2 = vbu.verificarVarBinary(dr, 6),
+                        imagen3 = vbu.verificarVarBinary(dr, 7),
+                        idestado = dr.GetInt32(8),
+                        estado = dr.GetString(9)
+                    });
+                }
+            }
+            return auxiliar;
+        }
     }
 }

@@ -34,19 +34,19 @@ namespace qallariy_servicios.DAO
                         //reg.Comentario = (dr.IsDBNull(5) ? "" : dr.GetString(5));
                         //imagen = dr.IsDBNull(5) ? "" : (byte[])dr[5],
                         imagen = bu.verificarVarBinary(dr,5),
-                        facebook = dr.GetString(6),
-                        instagram = dr.GetString(7),
-                        tiktok = dr.GetString(8),
-                        correo = dr.GetString(9),
-                        whatsapp = dr.GetString(10),
-                        website = dr.GetString(11),
+                        //facebook = dr.GetString(6),
+                        //instagram = dr.GetString(7),
+                        //tiktok = dr.GetString(8),
+                        //correo = dr.GetString(9),
+                        //whatsapp = dr.GetString(10),
+                        //website = dr.GetString(11),
                         categoria = dr.GetString(12)
                     }) ;
                 }
             }
             return auxiliar;
         }
-        public string Agregar(Negocio n)
+        public string Agregar(NegocioUpload n)
 
         {
             string mensaje = "";

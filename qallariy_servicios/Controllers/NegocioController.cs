@@ -20,7 +20,7 @@ namespace qallariy_servicios.Controllers
             return Ok(await Task.Run(() => new negocioDAO().Listado()));
         }
         [HttpPost("agregarnegocio")]
-        public async Task<ActionResult> PostSeller(Negocio negocio)
+        public async Task<ActionResult> PostSeller(NegocioUpload negocio)
         {
             return Ok(await Task.Run(() => new negocioDAO().Agregar(negocio)));
         }
